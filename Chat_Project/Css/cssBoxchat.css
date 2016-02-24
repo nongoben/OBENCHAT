@@ -1,0 +1,143 @@
+﻿/* STYLE RESET */
+* {
+  margin: 0px;
+  padding: 0px;
+  font: 14px Tahoma, Geneva, sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}
+body {
+  border-right: 2px rgba(255, 255, 255, 0.05) solid;
+  width: calc(100% - 200px); /* 200px is the width of the sidebar */
+  overflow: hidden;
+}
+
+/* CHAT SIDEBAR */
+.chat-sidebar {
+  position: fixed;
+  top: 10%;
+  right: 0px;
+  background: #2C3E50;
+  color: #ECF0F1;
+  border-left: 1px rgba(0, 0, 0, 0.5) solid;
+  width: 200px;
+  height: 70%;
+}
+
+.sidebar-name {
+  padding: 12px 24px;
+  position: relative;
+  border-top: 1px rgba(255, 255, 255, 0.2) solid;
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
+  cursor: pointer;
+}
+
+.sidebar-name:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-name:first-child {
+  border-top: none;
+}
+
+.sidebar-name:last-child:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 1px;
+}
+
+/* CHATBOXES */
+.chatbox-wrapper {
+  width: 100%;
+  height: 100%;
+
+}
+
+.chatbox-flex-wrapper {
+  display: flex;
+  justify-content: flex-end; /* Align the chatboxes to the right of the page */
+  align-items: flex-end; /* Align the chatboxes to the bottom of the page */
+  padding: 0px 4px;
+
+  height: 1000px;
+}
+
+.chatbox {
+  flex-shrink: 0; /* Prevent the box from shrinking width */
+  order: 0; /* We will use this to determine where the chatbox appears */
+  display: inline-block;
+  margin: 0px 4px;
+  border: 1px #2C3E50 solid;
+  border-bottom: none;
+  width: 250px;
+}
+
+.chatbox-header {
+  padding: 8px 12px;
+  position: relative;
+  background: #27AE60;
+  color: #ECF0F1;
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+.chatbox-close {
+  float: right;
+  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.chatbox-close:hover {
+  color: #ECF0F1;
+}
+
+/* CHATTEXTS */
+.chattexts {
+  background: #ECF0F1;
+}
+
+.chattext-for,
+.chattext-from {
+  display: block;
+  padding: 8px;
+  position: relative;
+  border-top: 1px rgba(255, 255, 255, 0.5) solid;
+}
+
+.chattext-for {
+  background: #E0F1E7;
+  border-bottom: 1px #82c09c solid;
+  text-align: right;
+}
+
+.chattext-from {
+  background: #FAFAFA;
+  border-bottom: 1px #BBB solid;
+}
+
+.chattexts span:first-child {
+  border-top: none;
+}
+
+.chattexts span:last-child {
+  border-bottom: none;
+}
+
+.chattext-input {
+  margin-bottom: -4px;
+  padding: 8px 12px;
+  background: #FAFAFA;
+  font-size: 12px;
+  border: none;
+  border-top: 1px rgba(0, 0, 0, 0.2) solid;
+  width: 100%;
+  resize: none;
+}
+
+

@@ -1,0 +1,127 @@
+﻿
+div {
+    display: block;
+}
+
+.trb_allContentWrapper, .trb_transporter {
+    position: relative;
+}
+
+header
+{
+    background-color: #1E1E1E;
+}
+.main_header
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 1;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 99999;
+}
+.bar-main{
+     background-color: #1E1E1E;
+    max-width:1280px;
+    height: 80px;
+    position: relative;
+    z-index: 20;
+    padding: 0;
+    margin: auto;
+}
+.bar-logo{
+    left: 0;
+    right: 0;
+    top: 20px;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    width:26%;
+    color:white;
+    font-size:35px;
+    font-family:'Viner Hand ITC';
+   
+}
+
+
+.bar-right{
+    width: auto;
+    text-align: center;
+    font-family: Arial;
+    font-size: 12px;
+    display: block;
+    margin: 30px 40px 0 0;
+    float: right;
+   
+}
+.bar-left{
+    width: auto;
+    text-align: center;
+    font-family: Arial;
+    font-size: 12px;
+    display: block;
+    margin: 30px 0 0 40px;
+    float: left;
+   
+}
+
+
+
+.bar-right [data-reg-handler="signInHandler"] {
+    padding: 13px 30px 12px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    height: 12px;
+    float: none;
+    color:white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.bar-right [data-reg-handler="signInHandler"]:hover {
+   box-sizing: content-box;
+    color: #ffffff;
+    font-size: 10px;
+    text-transform: uppercase;
+    width: 86px;
+    text-decoration: none;
+    font-weight: bold;
+    background-color:dimgrey;
+    border: 1px solid dimgrey;
+}
+
+.bar-right [data-reg-handler="signUpHandler"] {
+    padding: 13px 30px 12px;
+    border: 1px solid royalblue;
+    border-radius: 2px;
+    height: 12px;
+    float: none;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    background-color:royalblue
+}
+
+.bar-right [data-reg-handler="signUpHandler"]:hover {
+   box-sizing: content-box;
+    color: #ffffff;
+    font-size: 10px;
+    text-transform: uppercase;
+    width: 86px;
+    text-decoration: none;
+    font-weight: bold;
+    background-color:dimgrey;
+    border: 1px solid dimgrey;
+}
+
+
+#Image1
+{
+    margin-top:15%;
+    margin-left:39%;
+    width:400px;
+}
+
+
+

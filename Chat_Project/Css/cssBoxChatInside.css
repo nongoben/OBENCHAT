@@ -1,0 +1,110 @@
+﻿body {
+}
+
+
+.chat-sidebar {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background: #2C3E50;
+  color: #ECF0F1;
+  border-left: 1px rgba(0, 0, 0, 0.5) solid;
+  width: 200px;
+  height: 100%;
+}
+
+.sidebar-name {
+  padding: 12px 24px;
+  position: relative;
+  border-top: 1px rgba(255, 255, 255, 0.2) solid;
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
+  cursor: pointer;
+}
+.chatbox-wrapper {
+  width: 92%;
+  height: 100%;
+  margin-left:auto;
+  
+}
+
+.chatbox {
+  flex-shrink: 0; /* Prevent the box from shrinking width */
+  order: 0; /* We will use this to determine where the chatbox appears */
+  display: inline-block;
+  margin: 0px 4px;
+  border: 1px #2C3E50 solid;
+  border-bottom: none;
+  width: 250px;
+}
+
+
+
+.chatbox-header {
+  padding: 8px 12px;
+  position: relative;
+  background: #27AE60;
+  color: #ECF0F1;
+    top: 0px;
+    left: 0px;
+}
+
+.chatbox-close {
+  float: right;
+  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.chatbox-close:hover {
+  color: #ECF0F1;
+}
+
+/* CHATTEXTS */
+.chattexts {
+  background: #ECF0F1;
+}
+
+
+.chattext-for,
+.chattext-from {
+  display: block;
+  padding: 8px;
+  position: relative;
+  border-top: 1px rgba(255, 255, 255, 0.5) solid;
+}
+
+.chattext-for {
+  background: #E0F1E7;
+  border-bottom: 1px #82c09c solid;
+  text-align: right;
+}
+
+.chattext-from {
+  background: #FAFAFA;
+  border-bottom: 1px #BBB solid;
+}
+
+.chattexts span:first-child {
+  border-top: none;
+}
+
+.chattexts span:last-child {
+  border-bottom: none;
+}
+
+.chattext-input {
+  margin-bottom: -4px;
+  padding: 8px 12px;
+  background: #FAFAFA;
+  font-size: 12px;
+  border: none;
+  border-top: 1px rgba(0, 0, 0, 0.2) solid;
+  width: 100%;
+  resize: none;
+}
+
+.chatbox-flex-wrapper {
+ margin-top:37%;
+
+}
