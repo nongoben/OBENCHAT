@@ -61,8 +61,8 @@
        <asp:Button ID="btn_up" runat="server" Text="Upload" OnClick="btn_up_Click" Width="61px" CssClass="btn_up" />
            </div>
 
-      <div class="S_friend">
-          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="u_id" DataSourceID="SqlDataSource1" Visible="False">
+      
+          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="u_id" DataSourceID="SqlDataSource1" Visible="False" Height="221px">
               <Columns>
                   <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" />
                   <asp:BoundField DataField="u_email" HeaderText="u_email" SortExpression="u_email" />
@@ -73,7 +73,7 @@
               </Columns>
           </asp:GridView>
           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ChatProjectConnectionString %>" SelectCommand="SELECT * FROM [tbm_user]"></asp:SqlDataSource>
-      </div>
+      
          
             <asp:TextBox ID="txtName" runat="server" Visible="False" />
   

@@ -17,11 +17,11 @@ body {
               text-align: center;
               float:left;
             height: 414px;
-            width: 214px;
+            width: 211px;
             margin-top:4%;
 }
         .profile-img {
-              display: block;
+          
               height: 12em;
               margin-right: auto;
               margin-left: auto;
@@ -70,8 +70,8 @@ body {
 
         .hidden {
     display:none;
-}
-
+                }
+    
 .button {
     border: 1px solid #333;
     padding: 10px;
