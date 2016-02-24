@@ -32,6 +32,11 @@
             </div>     
       </header> 
 
+        <div class="S_friend">
+            <asp:Label ID="Label1" runat="server" Text="TEST"></asp:Label>
+
+        </div>
+
         <div class="chat-sidebar">
   <div class="sidebar-name" data-user-id="1">Test1</div>
   <div class="sidebar-name" data-user-id="2">Test2</div>
@@ -62,19 +67,6 @@
            </div>
 
       
-          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="u_id" DataSourceID="SqlDataSource1" Visible="False" Height="221px">
-              <Columns>
-                  <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" />
-                  <asp:BoundField DataField="u_email" HeaderText="u_email" SortExpression="u_email" />
-                  <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
-                  <asp:BoundField DataField="u_firstname" HeaderText="u_firstname" SortExpression="u_firstname" />
-                  <asp:BoundField DataField="u_lastname" HeaderText="u_lastname" SortExpression="u_lastname" />
-                  <asp:BoundField DataField="u_regis" HeaderText="u_regis" SortExpression="u_regis" />
-              </Columns>
-          </asp:GridView>
-          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ChatProjectConnectionString %>" SelectCommand="SELECT * FROM [tbm_user]"></asp:SqlDataSource>
-      
-         
             <asp:TextBox ID="txtName" runat="server" Visible="False" />
   
 

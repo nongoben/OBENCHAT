@@ -14,52 +14,52 @@ namespace Chat_Project
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            #region เช็คLogin ว่าใส่ID PASS หรือยัง
+            //#region เช็คLogin ว่าใส่ID PASS หรือยัง
          
-                string CheckSS1 = Session["ID"].ToString().Trim();
-                string CheckSS2 = Session["ssShowName"].ToString().Trim();
+            //    string CheckSS1 = Session["ID"].ToString().Trim();
+            //    string CheckSS2 = Session["ssShowName"].ToString().Trim();
 
-                if ((CheckSS1 == "77") && (CheckSS2 == "99"))
-                {
-                    Response.Redirect("frm_main.aspx");
-                }
+            //    if ((CheckSS1 == "77") && (CheckSS2 == "99"))
+            //    {
+            //        Response.Redirect("frm_main.aspx");
+            //    }
 
-                #endregion
+            //    #endregion
         
-            #region เช็คว่ารูปเป็นของใคร/อัพรูป ProFile
-            string Showname = Session["ssShowName"].ToString().Trim();
-                lbl_Username.Text = Showname.ToString().Trim();
+            //#region เช็คว่ารูปเป็นของใคร/อัพรูป ProFile
+            //string Showname = Session["ssShowName"].ToString().Trim();
+            //    lbl_Username.Text = Showname.ToString().Trim();
          
-                if (Session["ImagePath"] != null)
-                {
-                    this.img_Profile.ImageUrl = Session["ImagePath"].ToString();
-                }
-                else
-            {
-                string pathfile = Server.MapPath("Images/");
-                System.IO.DirectoryInfo dix = new System.IO.DirectoryInfo(pathfile);
-                foreach (System.IO.FileInfo dx in dix.GetFiles())
-                {
-                    string sub = dx.ToString().Trim();
-                    string subs = sub.Substring(0, 2);
-                    if (subs == CheckSS1)
-                    {
-                        string pathFiles = "Images/" + sub;
-                        this.img_Profile.ImageUrl = (pathFiles.ToString().Trim());
-                        break;
-                    }
+            //    if (Session["ImagePath"] != null)
+            //    {
+            //        this.img_Profile.ImageUrl = Session["ImagePath"].ToString();
+            //    }
+            //    else
+            //{
+            //    string pathfile = Server.MapPath("Images/");
+            //    System.IO.DirectoryInfo dix = new System.IO.DirectoryInfo(pathfile);
+            //    foreach (System.IO.FileInfo dx in dix.GetFiles())
+            //    {
+            //        string sub = dx.ToString().Trim();
+            //        string subs = sub.Substring(0, 2);
+            //        if (subs == CheckSS1)
+            //        {
+            //            string pathFiles = "Images/" + sub;
+            //            this.img_Profile.ImageUrl = (pathFiles.ToString().Trim());
+            //            break;
+            //        }
 
-                    else
-                    {
-                        this.img_Profile.ImageUrl = ("Images/default-avatar.png");
-                    }
-                }
+            //        else
+            //        {
+            //            this.img_Profile.ImageUrl = ("Images/default-avatar.png");
+            //        }
+            //    }
 
 
 
-            }
+            //}
 
-            #endregion
+            //#endregion
 
         }
 
