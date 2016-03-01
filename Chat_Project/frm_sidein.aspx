@@ -30,9 +30,9 @@
                             SNABLACK
                         </div>
                 <div class ="Social_Friend">
-                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/nav_icon_card_transfer.png" Height="59px" Width="84px" />
+                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/nav_icon_card_transfer.png" Height="59px" Width="84px" OnClick="ImageButton1_Click" />
                     <div class="bg_label">
-                    <asp:Label ID="Label1" runat="server" Text="4" CssClass="label_Addfriend"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="0" CssClass="label_Addfriend"></asp:Label>
                         </div>
                 </div>
 
@@ -52,9 +52,10 @@
            </div>
         
       <div class="S_friend">
+          <asp:GridView ID="GridView2" runat="server" Width="211px">
+          </asp:GridView>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Visible="False" Width="211px" DataKeyNames="u_id" OnRowCommand="GridView1_RowCommand"  >
                 <Columns>
-                 
                     <asp:BoundField DataField="Name" HeaderText="Name" ReadOnly="True" SortExpression="Name" />
                     <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" Visible="false" />
                        <asp:TemplateField>    

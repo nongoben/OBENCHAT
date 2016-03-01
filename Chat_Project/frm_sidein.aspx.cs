@@ -63,11 +63,16 @@ namespace Chat_Project
 
             #endregion
 
-
+            #region ตรวจสอบว่าใครแอดเพื่อนมา
             Utility uti = new Utility();
-            uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
-            Label1.Text = uti;
+            uti.ShowNumberAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
+            if (uti.Rows > 0)
+            {
+                Label1.Text = uti.Rows.ToString();
+            }
+           
 
+            #endregion
         }
 
         protected void btn_up_Click(object sender, EventArgs e)
@@ -116,6 +121,19 @@ namespace Chat_Project
             Utility uti = new Utility();
             dt.Merge(uti.SelectDataProcedure("sp_InsertBuddy_Add", Session["ID"].ToString().Trim(), FriendID.ToString().Trim()));
             
+        }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Utility uti = new Utility();
+            DataTable dt = new DataTable();
+            dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
+            if (dt.Rows.Count > 0)
+            {
+                GridView2.DataSource = dt;
+                GridView2.DataBind();
+                GridView2.Visible = true;
+            }
         }
     }
 }
