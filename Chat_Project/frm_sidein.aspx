@@ -53,6 +53,13 @@
         
       <div class="S_friend">
           <asp:GridView ID="GridView2" runat="server" Width="211px">
+              <Columns>
+                  <asp:TemplateField>    
+                    <ItemTemplate>  
+                        <asp:Button ID="btn_AcceptFriend" runat="server" Text="ADD" OnClick="btn_AcceptFriend_Click" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
+                    </ItemTemplate>
+                    </asp:TemplateField>
+              </Columns>
           </asp:GridView>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Visible="False" Width="211px" DataKeyNames="u_id" OnRowCommand="GridView1_RowCommand"  >
                 <Columns>

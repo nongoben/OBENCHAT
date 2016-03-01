@@ -128,12 +128,37 @@ namespace Chat_Project
             Utility uti = new Utility();
             DataTable dt = new DataTable();
             dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
-            if (dt.Rows.Count > 0)
+            //string[] get_Sp_ShowAddmeAndReceive = new string[]
+            int rowTB = dt.Rows.Count;
+            string[] getBuddyID = new string[rowTB];
+            for (int i = 0; i < rowTB; i++)
             {
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
-                GridView2.Visible = true;
+                getBuddyID[i] += dt.Rows[i]["Buddylist_ID"].ToString().Trim();
+                string getAr = getBuddyID[i];
             }
+
+            string[] GetName = new string[rowTB];
+
+            for (int i = 0; i < rowTB; i++)
+            {
+                string getAr = getBuddyID[i];
+                dt = new DataTable();
+                dt.Merge(uti.ShowAddmeAndReceive("sp_GetBuddyIDToShow", getAr));
+                GetName[i] += dt.Rows[0]["name"].ToString().Trim();
+
+            }
+
+
+
+            GridView2.DataSource = GetName;
+            GridView2.DataBind();
+            GridView2.Visible = true;
+           
+        }
+
+        protected void btn_AcceptFriend_Click(object sender, EventArgs e)
+        {
+            GridView2.Visible = false;
         }
     }
 }
