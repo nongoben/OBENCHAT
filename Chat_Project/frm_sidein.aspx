@@ -15,8 +15,8 @@
 <body>
     <form id="form1" runat="server">
 
-      <header class="main_header" data-reg-role="prompt" >
-            <div class="bar-main"> 
+      <header class="main_header_sidein" data-reg-role="prompt" >
+            <div class="bar-main_sidein"> 
                 <div class ="bar-right-inside">          
                     <asp:Button ID="btn_logout" runat="server" Text="LOGOUT" OnClick="btn_logout_Click" /> 
                     <asp:Button ID="btn_searchFriend" runat="server" Text="Search" OnClick="btn_searchFriend_Click" /> 
@@ -29,46 +29,46 @@
                         <div class ="bar-logo-inside">
                             SNABLACK
                         </div>
+                <div class ="Social_Friend">
+                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/nav_icon_card_transfer.png" Height="59px" Width="84px" />
+                    <div class="bg_label">
+                    <asp:Label ID="Label1" runat="server" Text="4" CssClass="label_Addfriend"></asp:Label>
+                        </div>
+                </div>
+
             </div>     
       </header> 
 
-          
-
-   
       <div class ="boxUserProfile" >
           <asp:Image ID="img_Profile" runat="server" CssClass="profile-img"  />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             
               <div class="profile-text">
-                  &nbsp;<asp:Label ID="lbl_Username" runat="server" Text="Wow OK" Font-Size="Large"></asp:Label>      
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
- 
-                  <br />
+                  <asp:Label ID="lbl_Username" runat="server" Text="Wow OK" Font-Size="Large"></asp:Label>             
+
               </div>
     <asp:FileUpload ID="fuDemo" runat="server"  Width="77px"  CssClass="file_up"  />
 
        <asp:Button ID="btn_up" runat="server" Text="Upload" OnClick="btn_up_Click" Width="61px" CssClass="btn_up" />
            </div>
-
+        
       <div class="S_friend">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="u_id" DataSourceID="SqlDataSource1" Visible="False" >
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Visible="False" Width="211px" DataKeyNames="u_id" OnRowCommand="GridView1_RowCommand"  >
                 <Columns>
-                    <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" />
-                    <asp:BoundField DataField="u_email" HeaderText="u_email" SortExpression="u_email" />
-                    <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
-                    <asp:BoundField DataField="u_firstname" HeaderText="u_firstname" SortExpression="u_firstname" />
-                    <asp:BoundField DataField="u_lastname" HeaderText="u_lastname" SortExpression="u_lastname" />
-                    <asp:BoundField DataField="u_regis" HeaderText="u_regis" SortExpression="u_regis" />
+                 
+                    <asp:BoundField DataField="Name" HeaderText="Name" ReadOnly="True" SortExpression="Name" />
+                    <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" Visible="false" />
+                       <asp:TemplateField>    
+                    <ItemTemplate>  
+                        <asp:Button ID="btn_AddFriend" runat="server" Text="ADD" OnClick="btn_AddFriend_Click" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
+                    </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ChatProjectConnectionString %>" SelectCommand="SELECT * FROM [tbm_user]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ChatProjectConnectionString %>" SelectCommand="sp_SearchFriend" SelectCommandType="StoredProcedure">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="txt_searchFriend" Name="value1" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
 
         </div>
 

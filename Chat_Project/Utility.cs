@@ -20,6 +20,7 @@ namespace Chat_Project
         public string _u_password = "";
         public string _u_firstname = "";
         public string _u_lastname = "";
+        public int Rows;
         DataTable dt;
         DataSet ds;
         SqlCommand cmd;
@@ -76,6 +77,54 @@ namespace Chat_Project
 
             return dt;
         }
+
+
+        public DataTable SelectDataProcedure(string cmdTxt, string Value1, string Value2)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            ds = new DataSet();
+            dt = new DataTable();
+            cmd = new SqlCommand(cmdTxt, this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Value1", Value1.ToString().Trim());
+            cmd.Parameters.AddWithValue("@Value2", Value2.ToString().Trim());
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            else
+            {
+                dt = null;
+            }
+            return dt;
+        }
+        public int ShowAddmeAndReceive(string cmdTxt, string Value1)
+        {
+            DataTable dt = new DataTable();
+            
+            SqlCommand cmd = new SqlCommand(cmdTxt, this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("value1", Value1.ToString().Trim());
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds);
+         
+            if (ds.Tables[0].Rows.Count>0)
+            {
+                for(int i=0;i<=ds.Tables[0].Rows.Count;i++)
+                {
+                    this.Rows += i;
+                }
+            }
+
+            return this.Rows;
+
+        }
+
     }
 }
 

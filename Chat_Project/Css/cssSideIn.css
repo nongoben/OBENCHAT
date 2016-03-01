@@ -6,7 +6,7 @@ body {
 
         .boxUserProfile
         {
-              margin-left: 0%;      
+              margin-left: 0;      
               padding:2em;
               color: #444;
               font-family: 'Lato', sans-serif;
@@ -14,14 +14,14 @@ body {
               line-height: 1;
               text-align: center;
               height: 414px;
-              max-width:100px;
-              margin-top:4%;
+              margin-top:-2%;
+              float:left;
+              width: 223px;
 }
         .profile-img {
           
               height: 12em;
-              margin-right: auto;
-              margin-left: auto;
+              float:left;
               border: .5em solid #f2f2f2;
               border-radius: 100%;
               box-shadow:  0 1px 0 0 rgba(0,0,0,.1);
@@ -30,7 +30,7 @@ body {
         }
 
         .profile-text {
-          margin-top: -4em;
+          margin-top: 70%;
           padding: 5em 1.5em 1.5em 1.5em; 
           background: white;
           border-radius: 3px;
@@ -56,7 +56,7 @@ body {
         .btn_up
         {
             margin-top:20px;
-            margin-left:110%;
+            margin-left:-5%;
         }
       
         .file_up{
@@ -101,10 +101,9 @@ body {
     font-family: Arial;
     font-size: 12px;
     display: block;
-    margin: 21px 40px 0 0;
+    margin: 20px 40px 0 0;
     float: right;
-    
-   
+    height: 78px;
 }
 
 #btn_logout
@@ -118,7 +117,7 @@ body {
     font-size: 10px;
     background-color:#FF0033;
     border-color:#FF0033;
-     height:40px;
+     height:36px;
     width: 86px;
     text-align:center;
     margin-right:-20px;
@@ -170,6 +169,62 @@ body {
 }
 
 .S_friend {
-    margin-top:-23%;
-    margin-left:35%;
+    
+   
+    margin-top:100px;
+    margin-left:43%;
+    width: 52px;
+    text-align: center;
+}
+
+
+.Social_Friend
+
+{
+
+    margin-left:10%;
+}
+.main_header_sidein
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 1;
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 99999;
+    left: 0px;
+   height: 70px;
+}
+.bar-main_sidein{
+     background-color: #1E1E1E;
+    max-width:1280px;
+   height: 58px;
+    position: relative;
+    z-index: 20;
+    padding: 0;
+    margin: auto;
+    left: 0px;
+}
+
+#ImageButton1
+{
+    padding-top:10px;
+}
+.bg_label
+{
+    background-color:red;
+    text-align:center;
+    width:25px;
+    height:20px;
+    border-radius:20%;
+    margin-left:60px;
+    margin-top:-45px;
+    
+
+}
+.label_Addfriend
+{
+    color:white;
+  
 }

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Chat_Project
 {
@@ -60,7 +62,12 @@ namespace Chat_Project
             }
 
             #endregion
-           
+
+
+            Utility uti = new Utility();
+            uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
+            Label1.Text = uti;
+
         }
 
         protected void btn_up_Click(object sender, EventArgs e)
@@ -87,7 +94,28 @@ namespace Chat_Project
 
         protected void btn_searchFriend_Click(object sender, EventArgs e)
         {
+     
             GridView1.Visible = true;
+        }
+        protected void btn_AddFriend_Click(object sender, EventArgs e)
+        {
+
+           
+            //string FriendID = GridView1.Rows[0].Cells["u_id"].Text.ToString().Trim();
+           
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            string FriendID = (string)this.GridView1.DataKeys[rowIndex]["u_id"].ToString();
+            GridView1.Visible = false;
+            txt_searchFriend.Text = string.Empty;
+
+            DataTable dt = new DataTable();
+            Utility uti = new Utility();
+            dt.Merge(uti.SelectDataProcedure("sp_InsertBuddy_Add", Session["ID"].ToString().Trim(), FriendID.ToString().Trim()));
+            
         }
     }
 }

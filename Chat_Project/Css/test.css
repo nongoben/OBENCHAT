@@ -20,15 +20,19 @@ header
     -webkit-user-select: none;
     user-select: none;
     z-index: 99999;
+    left: 0px;
+    height: 58px;
 }
 .bar-main{
      background-color: #1E1E1E;
     max-width:1280px;
-    height: 80px;
+    height: 61px;
     position: relative;
     z-index: 20;
     padding: 0;
     margin: auto;
+    top: 0px;
+    left: 0px;
 }
 .bar-logo{
     left: 0;
