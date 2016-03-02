@@ -101,11 +101,12 @@ namespace Chat_Project
         {
      
             GridView1.Visible = true;
+            GridView2.Visible = false;
         }
         protected void btn_AddFriend_Click(object sender, EventArgs e)
         {
 
-           
+          
             //string FriendID = GridView1.Rows[0].Cells["u_id"].Text.ToString().Trim();
            
         }
@@ -125,10 +126,10 @@ namespace Chat_Project
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
+            GridView1.Visible = true;
             Utility uti = new Utility();
             DataTable dt = new DataTable();
             dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
-            //string[] get_Sp_ShowAddmeAndReceive = new string[]
             int rowTB = dt.Rows.Count;
             string[] getBuddyID = new string[rowTB];
             for (int i = 0; i < rowTB; i++)
@@ -148,8 +149,6 @@ namespace Chat_Project
 
             }
 
-
-
             GridView2.DataSource = GetName;
             GridView2.DataBind();
             GridView2.Visible = true;
@@ -158,7 +157,29 @@ namespace Chat_Project
 
         protected void btn_AcceptFriend_Click(object sender, EventArgs e)
         {
-            GridView2.Visible = false;
+           
+
         }
+
+        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Utility uti = new Utility();
+            DataTable dt = new DataTable();
+            string[] rowsGrid2 = new string[GridView2.Rows.Count];
+
+            for (int i = 0; i < GridView2.Rows.Count; i++)
+            {
+                rowsGrid2[i] += GridView2.Rows[i].Cells[1].Text;
+            }
+           
+            int RowIndex = int.Parse(e.CommandArgument.ToString());
+            string test = Convert.ToString(RowIndex);
+
+            string name = rowsGrid2[RowIndex];
+            
+        }
+
+       
     }
+
 }
