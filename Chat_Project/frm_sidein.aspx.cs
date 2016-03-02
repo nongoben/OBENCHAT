@@ -126,33 +126,10 @@ namespace Chat_Project
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-     
-            Utility uti = new Utility();
-            DataTable dt = new DataTable();
-            dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
-            int rowTB = dt.Rows.Count;
-            string[] getBuddyID = new string[rowTB];
-            for (int i = 0; i < rowTB; i++)
-            {
-                getBuddyID[i] += dt.Rows[i]["Buddylist_ID"].ToString().Trim();
-                string getAr = getBuddyID[i];
-            }
 
-            string[] GetName = new string[rowTB];
+            ShowFriend();
 
-            for (int i = 0; i < rowTB; i++)
-            {
-                string getAr = getBuddyID[i];
-                dt = new DataTable();
-                dt.Merge(uti.ShowAddmeAndReceive("sp_GetBuddyIDToShow", getAr));
-                GetName[i] += dt.Rows[0]["name"].ToString().Trim();
 
-            }
-
-            GridView2.DataSource = GetName;
-            GridView2.DataBind();
-            GridView2.Visible = true;
-           
         }
 
         protected void btn_AcceptFriend_Click(object sender, EventArgs e)
@@ -178,7 +155,36 @@ namespace Chat_Project
             string name = rowsGrid2[RowIndex];
 
             uti.SelectDataProcedure("sp_AcceptFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
-            
+
+            ShowFriend();
+        }
+        public void ShowFriend ()
+        {
+            Utility uti = new Utility();
+            DataTable dt = new DataTable();
+            dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
+            int rowTB = dt.Rows.Count;
+            string[] getBuddyID = new string[rowTB];
+            for (int i = 0; i < rowTB; i++)
+            {
+                getBuddyID[i] += dt.Rows[i]["Buddylist_ID"].ToString().Trim();
+                string getAr = getBuddyID[i];
+            }
+
+            string[] GetName = new string[rowTB];
+
+            for (int i = 0; i < rowTB; i++)
+            {
+                string getAr = getBuddyID[i];
+                dt = new DataTable();
+                dt.Merge(uti.ShowAddmeAndReceive("sp_GetBuddyIDToShow", getAr));
+                GetName[i] += dt.Rows[0]["name"].ToString().Trim();
+
+            }
+
+            GridView2.DataSource = GetName;
+            GridView2.DataBind();
+            GridView2.Visible = true;
         }
 
        
