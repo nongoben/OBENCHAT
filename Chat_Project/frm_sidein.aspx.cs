@@ -120,13 +120,13 @@ namespace Chat_Project
 
             DataTable dt = new DataTable();
             Utility uti = new Utility();
-            dt.Merge(uti.SelectDataProcedure("sp_InsertBuddy_Add", Session["ID"].ToString().Trim(), FriendID.ToString().Trim()));
+            uti.SelectDataProcedure("sp_InsertBuddy_Add", Session["ID"].ToString().Trim(), FriendID.ToString().Trim());
             
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            GridView1.Visible = true;
+     
             Utility uti = new Utility();
             DataTable dt = new DataTable();
             dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));

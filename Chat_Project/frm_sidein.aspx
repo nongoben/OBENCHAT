@@ -67,7 +67,7 @@
                     <asp:BoundField DataField="u_id" HeaderText="u_id" InsertVisible="False" ReadOnly="True" SortExpression="u_id" Visible="false" />
                        <asp:TemplateField>    
                     <ItemTemplate>  
-                        <asp:Button ID="btn_AddFriend" runat="server" Text="ADD" OnClick="btn_AddFriend_Click" CommandArgument = '<%# ((GridViewRow) Container).RowIndex %>' />
+                        <asp:Button ID="btn_AddFriend" runat="server" Text="ADD" OnClick="btn_AddFriend_Click" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
                     </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
