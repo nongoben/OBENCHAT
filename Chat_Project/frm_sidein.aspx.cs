@@ -176,6 +176,8 @@ namespace Chat_Project
             string test = Convert.ToString(RowIndex);
 
             string name = rowsGrid2[RowIndex];
+
+            uti.SelectDataProcedure("sp_AcceptFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
             
         }
 
