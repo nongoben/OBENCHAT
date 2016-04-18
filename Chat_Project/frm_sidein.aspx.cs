@@ -63,16 +63,7 @@ namespace Chat_Project
 
             #endregion
 
-            #region ตรวจสอบว่าใครแอดเพื่อนมา
-            Utility uti = new Utility();
-            uti.ShowNumberAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
-            if (uti.Rows > 0)
-            {
-                Label1.Text = uti.Rows.ToString();
-            }
-           
-
-            #endregion
+            LabelCountAdd();
         }
 
         protected void btn_up_Click(object sender, EventArgs e)
@@ -155,8 +146,9 @@ namespace Chat_Project
             string name = rowsGrid2[RowIndex];
 
             uti.SelectDataProcedure("sp_AcceptFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
-
+          
             ShowFriend();
+            
         }
         public void ShowFriend ()
         {
@@ -185,9 +177,23 @@ namespace Chat_Project
             GridView2.DataSource = GetName;
             GridView2.DataBind();
             GridView2.Visible = true;
+            LabelCountAdd();
+        }
+        public void LabelCountAdd()
+        {
+
+            #region ตรวจสอบว่าใครแอดเพื่อนมา
+            Utility uti = new Utility();
+            uti.ShowNumberAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
+            if (uti.Rows > 0)
+            {
+                Label1.Text = uti.Rows.ToString();
+            }
+
+
+            #endregion
         }
 
-       
     }
 
 }
