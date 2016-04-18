@@ -77,28 +77,37 @@
                     <asp:ControlParameter ControlID="txt_searchFriend" Name="value1" PropertyName="Text" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
-
+          
         </div>
+        
 
-        <div class="chat-sidebar">
-  <div class="sidebar-name" data-user-id="1">Test1</div>
-  <div class="sidebar-name" data-user-id="2">Test2</div>
-  <div class="sidebar-name" data-user-id="3">Test3</div>
-  <div class="sidebar-name" data-user-id="4">Test4</div>
-</div>
-
+   
    
             <asp:TextBox ID="txtName" runat="server" Visible="False" />
   
 
 
           <div class="chat-sidebar">
-              <div class="sidebar-name" data-user-id="1">Test1</div>
-              <div class="sidebar-name" data-user-id="2">Test2</div>
-              <div class="sidebar-name" data-user-id="3">Test3</div>
-              <div class="sidebar-name" data-user-id="4">Test4</div>
+              <div class="sidebar-name" data-user-id="1">Test1</div> 
+              <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                  <ContentTemplate>
+                      <asp:GridView ID="GridView3" runat="server" BorderStyle="None" GridLines="None" ShowHeader="false" OnRowCommand="GridView3_RowCommand" >
+                  <HeaderStyle BorderStyle="None" />
+                    <Columns>
+                  <asp:TemplateField>    
+                    <ItemTemplate>  
+                        <asp:ImageButton ID="btn_favorite" runat="server" Height="30px" Width="30px" ImageUrl="~/Images/star-512.png" />
+                        <asp:ImageButton ID="btn_unfavorite" runat="server" Height="30px" Width="30px" ImageUrl="~/Images/Button-Favorite-icon.png" Visible="false" />
+                    </ItemTemplate>
+                    </asp:TemplateField>
+              </Columns>
+              </asp:GridView>
+                  </ContentTemplate>
+              </asp:UpdatePanel>
+              
             </div>
-
+       
 <div class="chatbox-wrapper">
   <div class="chatbox-flex-wrapper">
     
@@ -114,48 +123,9 @@
         <span class="chattext-for">What</span>
       </div>
       <textarea class="chattext-input" placeholder="Send a message..."></textarea>
-    </div>
-    
-    <div class="chatbox" data-user-id="2">
-      <div class="chatbox-header">
-        <button class="chatbox-close" data-user-id="2">&#x2716;</button>
-        <span>Test2</span>
-      </div>
-      <div class="chattexts">
-         <span class="chattext-from">Hi</span>
-        <span class="chattext-for">1234</span>
-        <span class="chattext-from">Oh.</span>
-      </div>
-      <textarea class="chattext-input" placeholder="Send a message..."></textarea>
-    </div>
-    
-    <div class="chatbox" data-user-id="3">
-      <div class="chatbox-header">
-        <button class="chatbox-close" data-user-id="3">&#x2716;</button>
-        <span>Test3</span>
-      </div>
-      <div class="chattexts">
-       <span class="chattext-from">Hi</span>
-        <span class="chattext-for">1234</span>
-        <span class="chattext-from">Oh.</span>
-        <span class="chattext-for">What</span>
-      </div>
-      <textarea class="chattext-input" placeholder="Send a message..."></textarea>
-    </div>
 
-    <div class="chatbox" data-user-id="4">
-      <div class="chatbox-header">
-        <button class="chatbox-close" data-user-id="4">&#x2716;</button>
-        <span>Test4</span>
-      </div>
-      <div class="chattexts">
-         <span class="chattext-from">Hi</span>
-        <span class="chattext-for">1234</span>
-      
-      </div>
-      <textarea class="chattext-input" placeholder="Send a message..."></textarea>
+
     </div>
-    
   </div>
 </div>
 

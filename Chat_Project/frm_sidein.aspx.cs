@@ -64,6 +64,21 @@ namespace Chat_Project
             #endregion
 
             LabelCountAdd();
+            Utility uti = new Utility();
+            string showFriend = "select B.u_firstname +' '+ b.u_lastname from tbm_Buddy A join tbm_user B on A.f_id = B.u_id where A.u_id = '"+ CheckSS1 + "' and A.Fstatus_id = 2 ";
+            SqlCommand cmd = new SqlCommand(showFriend , uti.connectToDB());
+            SqlDataAdapter da = new SqlDataAdapter(cmd);       
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                DataTable dt = new DataTable();
+                dt = ds.Tables[0];
+
+                GridView3.DataSource = dt;
+                GridView3.DataBind();
+            }
+
         }
 
         protected void btn_up_Click(object sender, EventArgs e)
@@ -193,7 +208,19 @@ namespace Chat_Project
 
             #endregion
         }
+        protected void Favorite_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frm_main.aspx");
+        }
 
+        protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            for (int i = 0; i < GridView3.Rows.Count; i++)
+            {
+               
+            }
+
+        }
     }
 
 }

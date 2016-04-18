@@ -27,9 +27,9 @@ body {
 .sidebar-name {
   padding: 12px 24px;
   position: relative;
-  border-top: 1px rgba(255, 255, 255, 0.2) solid;
-  border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
   cursor: pointer;
+    top: 5px;
+    left: -2px;
 }
 
 .sidebar-name:hover {

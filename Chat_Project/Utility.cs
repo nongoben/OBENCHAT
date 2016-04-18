@@ -13,7 +13,7 @@ namespace Chat_Project
     
     public class Utility
     {
-        string strcon = "Data Source=NONGOBEN\\SQLEXPRESS;Initial Catalog=ChatProject;Integrated Security=True";
+        public string strcon = "Data Source=NONGOBEN\\SQLEXPRESS;Initial Catalog=ChatProject;Integrated Security=True";
 
         public SqlConnection con;
         public string _u_email = "";
