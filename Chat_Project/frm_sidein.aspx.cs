@@ -12,8 +12,8 @@ namespace Chat_Project
 {
     public partial class frm_sidein : System.Web.UI.Page
     {
-       
-        
+        private object btnFavorite;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             #region เช็คLogin ว่าใส่ID PASS หรือยัง
@@ -64,20 +64,16 @@ namespace Chat_Project
             #endregion
 
             LabelCountAdd();
-            Utility uti = new Utility();
-            string showFriend = "select B.u_firstname +' '+ b.u_lastname from tbm_Buddy A join tbm_user B on A.f_id = B.u_id where A.u_id = '"+ CheckSS1 + "' and A.Fstatus_id = 2 ";
-            SqlCommand cmd = new SqlCommand(showFriend , uti.connectToDB());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);       
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (!IsPostBack)
             {
+                Utility uti = new Utility();
                 DataTable dt = new DataTable();
-                dt = ds.Tables[0];
+                dt.Merge(uti.ShowAddmeAndReceive("sp_ShowFriend", CheckSS1.ToString().Trim()));
 
                 GridView3.DataSource = dt;
                 GridView3.DataBind();
             }
+
 
         }
 
@@ -208,19 +204,16 @@ namespace Chat_Project
 
             #endregion
         }
-        protected void Favorite_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frm_main.aspx");
-        }
-
+       
         protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            for (int i = 0; i < GridView3.Rows.Count; i++)
-            {
-               
-            }
-
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            string FriendID = (string)this.GridView3.DataKeys[rowIndex].ToString();
+            Response.Redirect("frm_main.aspx");
+            
         }
+
+        
     }
 
 }

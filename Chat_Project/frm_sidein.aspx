@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frm_sidein.aspx.cs" Inherits="Chat_Project.frm_sidein" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frm_sidein.aspx.cs" Inherits="Chat_Project.frm_sidein"  EnableEventValidation ="false" %>
 
 <!DOCTYPE html>
 
@@ -79,34 +79,37 @@
             </asp:SqlDataSource>
           
         </div>
-        
 
-   
-   
+
+
+        
             <asp:TextBox ID="txtName" runat="server" Visible="False" />
   
 
 
           <div class="chat-sidebar">
               <div class="sidebar-name" data-user-id="1">Test1</div> 
-              <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                  <ContentTemplate>
-                      <asp:GridView ID="GridView3" runat="server" BorderStyle="None" GridLines="None" ShowHeader="false" OnRowCommand="GridView3_RowCommand" >
+            
+                      <asp:GridView ID="GridView3" runat="server" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" >
                   <HeaderStyle BorderStyle="None" />
-                    <Columns>
-                  <asp:TemplateField>    
+                          <Columns>
+
+                               <asp:TemplateField>    
                     <ItemTemplate>  
-                        <asp:ImageButton ID="btn_favorite" runat="server" Height="30px" Width="30px" ImageUrl="~/Images/star-512.png" />
-                        <asp:ImageButton ID="btn_unfavorite" runat="server" Height="30px" Width="30px" ImageUrl="~/Images/Button-Favorite-icon.png" Visible="false" />
+                        <asp:ImageButton ID="btnFavorite" runat="server" ImageUrl="~/Images/star-512.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
                     </ItemTemplate>
                     </asp:TemplateField>
-              </Columns>
+
+                          </Columns>
               </asp:GridView>
-                  </ContentTemplate>
-              </asp:UpdatePanel>
-              
+          
             </div>
+
+
+
+
+
+
        
 <div class="chatbox-wrapper">
   <div class="chatbox-flex-wrapper">
