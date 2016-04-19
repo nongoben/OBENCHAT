@@ -90,13 +90,25 @@
           <div class="chat-sidebar">
               <div class="sidebar-name" data-user-id="1">Test1</div> 
             
-                      <asp:GridView ID="GridView3" runat="server" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" >
+                      <asp:GridView ID="gv_showfriend" runat="server" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" >
                   <HeaderStyle BorderStyle="None" />
                           <Columns>
 
                                <asp:TemplateField>    
                     <ItemTemplate>  
                         <asp:ImageButton ID="btnFavorite" runat="server" ImageUrl="~/Images/star-512.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
+                    </ItemTemplate>
+                    </asp:TemplateField>
+
+                          </Columns>
+              </asp:GridView>
+          
+              <br />
+              <asp:GridView ID="gv_showfavorite" runat="server" OnRowCommand="gv_showfavorite_RowCommand" BorderStyle="None" GridLines="None" ShowHeader="False">
+                  <Columns>
+                               <asp:TemplateField>    
+                    <ItemTemplate>  
+                        <asp:ImageButton ID="btnUnFavorite" runat="server" ImageUrl="~/Images/Button-Favorite-icon.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
                     </ItemTemplate>
                     </asp:TemplateField>
 

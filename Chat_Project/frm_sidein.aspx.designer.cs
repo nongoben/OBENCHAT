@@ -139,12 +139,21 @@ namespace Chat_Project {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// GridView3 control.
+        /// gv_showfriend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView gv_showfriend;
+        
+        /// <summary>
+        /// gv_showfavorite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_showfavorite;
     }
 }

@@ -97,7 +97,7 @@ namespace Chat_Project
             }
             else
             {
-                dt = null;
+                dt = ds.Tables[0];
             }
             return dt;
         }
@@ -142,7 +142,57 @@ namespace Chat_Project
             }
             else
             {
-                dt = null;
+                dt = ds.Tables[0];
+            }
+
+            return dt;
+
+        }
+        public DataTable ShowFavorite(string cmdTxt, string Value1)
+        {
+            DataTable dt = new DataTable();
+
+            SqlCommand cmd = new SqlCommand(cmdTxt, this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("value1", Value1.ToString().Trim());
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+              
+            }
+            else
+            {
+
+                dt = ds.Tables[0];
+            }
+
+            return dt;
+
+        }
+        public DataTable ShowFriend(string cmdTxt, string Value1)
+        {
+            DataTable dt = new DataTable();
+
+            SqlCommand cmd = new SqlCommand(cmdTxt, this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("value1", Value1.ToString().Trim());
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            else
+            {
+                dt = ds.Tables[0];
             }
 
             return dt;

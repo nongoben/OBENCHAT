@@ -12,8 +12,7 @@ namespace Chat_Project
 {
     public partial class frm_sidein : System.Web.UI.Page
     {
-        private object btnFavorite;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             #region เช็คLogin ว่าใส่ID PASS หรือยัง
@@ -68,10 +67,26 @@ namespace Chat_Project
             {
                 Utility uti = new Utility();
                 DataTable dt = new DataTable();
-                dt.Merge(uti.ShowAddmeAndReceive("sp_ShowFriend", CheckSS1.ToString().Trim()));
-
-                GridView3.DataSource = dt;
-                GridView3.DataBind();
+                dt.Merge(uti.ShowFriend("sp_ShowFriend", CheckSS1.ToString().Trim()));
+                if (dt == null)
+                {
+                    gv_showfriend.Visible = true;
+                }
+                else
+                {
+                    gv_showfriend.DataSource = dt;
+                    gv_showfriend.DataBind();
+                }
+                DataTable dt1 = new DataTable();
+                dt1.Merge(uti.ShowFavorite("show_FavoriteFriend", CheckSS1.ToString().Trim()));
+                if (dt1.Rows.Count == 0)
+                {
+                    gv_showfavorite.Visible = true;
+                }
+                else {
+                    gv_showfavorite.DataSource = dt1;
+                    gv_showfavorite.DataBind();
+                }
             }
 
 
@@ -208,12 +223,15 @@ namespace Chat_Project
         protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = int.Parse(e.CommandArgument.ToString());
-            string FriendID = (string)this.GridView3.DataKeys[rowIndex].ToString();
+            //string FriendID = (string)this.GridView3.DataKeys[rowIndex].ToString();
             Response.Redirect("frm_main.aspx");
             
         }
 
-        
+        protected void gv_showfavorite_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
     }
 
 }
