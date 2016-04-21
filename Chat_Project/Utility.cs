@@ -87,18 +87,11 @@ namespace Chat_Project
             dt = new DataTable();
             cmd = new SqlCommand(cmdTxt, this.connectToDB());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Value1", Value1.ToString().Trim());
-            cmd.Parameters.AddWithValue("@Value2", Value2.ToString().Trim());
+            cmd.Parameters.AddWithValue("@value1", Value1.ToString().Trim());
+            cmd.Parameters.AddWithValue("@value2", Value2.ToString().Trim());
             da = new SqlDataAdapter(cmd);
             da.Fill(ds);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                dt = ds.Tables[0];
-            }
-            else
-            {
-                dt = ds.Tables[0];
-            }
+       
             return dt;
         }
         public int ShowNumberAddmeAndReceive(string cmdTxt, string Value1)
@@ -181,6 +174,30 @@ namespace Chat_Project
             SqlCommand cmd = new SqlCommand(cmdTxt, this.connectToDB());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("value1", Value1.ToString().Trim());
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            else
+            {
+                dt = ds.Tables[0];
+            }
+
+            return dt;
+
+        }
+        public DataTable AcceptFriend(string cmdTxt, string Value1)
+        {
+            DataTable dt = new DataTable();
+
+            SqlCommand cmd = new SqlCommand(cmdTxt, this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@value1", Value1.ToString().Trim());
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             ds = new DataSet();

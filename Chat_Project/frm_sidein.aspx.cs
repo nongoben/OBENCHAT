@@ -63,31 +63,7 @@ namespace Chat_Project
             #endregion
 
             LabelCountAdd();
-            if (!IsPostBack)
-            {
-                Utility uti = new Utility();
-                DataTable dt = new DataTable();
-                dt.Merge(uti.ShowFriend("sp_ShowFriend", CheckSS1.ToString().Trim()));
-                if (dt == null)
-                {
-                    gv_showfriend.Visible = true;
-                }
-                else
-                {
-                    gv_showfriend.DataSource = dt;
-                    gv_showfriend.DataBind();
-                }
-                DataTable dt1 = new DataTable();
-                dt1.Merge(uti.ShowFavorite("show_FavoriteFriend", CheckSS1.ToString().Trim()));
-                if (dt1.Rows.Count == 0)
-                {
-                    gv_showfavorite.Visible = true;
-                }
-                else {
-                    gv_showfavorite.DataSource = dt1;
-                    gv_showfavorite.DataBind();
-                }
-            }
+            ShowFriends();
 
 
         }
@@ -105,6 +81,33 @@ namespace Chat_Project
                 //Some code to insert values in DataBase
             }
         }
+
+        public void ShowFriends()
+        {
+            Utility uti = new Utility();
+        DataTable dt = new DataTable();
+        dt.Merge(uti.ShowFriend("sp_ShowFriend", Session["ID"].ToString().Trim()));
+                if (dt == null)
+                {
+                    ///gv_showfriend.Visible = false;
+                }
+                else
+                {
+                    gv_showfriend.DataSource = dt;
+                    gv_showfriend.DataBind();
+                }
+    DataTable dt1 = new DataTable();
+    dt1.Merge(uti.ShowFavorite("show_FavoriteFriend", Session["ID"].ToString().Trim()));
+                if (dt1.Rows.Count == 0)
+                {
+                    //gv_showfavorite.Visible = false;
+                }
+                else {
+                    gv_showfavorite.DataSource = dt1;
+                    gv_showfavorite.DataBind();
+                
+                    }
+    }
 
         protected void btn_logout_Click(object sender, EventArgs e)
         {
@@ -138,7 +141,7 @@ namespace Chat_Project
             DataTable dt = new DataTable();
             Utility uti = new Utility();
             uti.SelectDataProcedure("sp_InsertBuddy_Add", Session["ID"].ToString().Trim(), FriendID.ToString().Trim());
-            
+            ShowFriends();
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -155,54 +158,69 @@ namespace Chat_Project
 
         }
 
-        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs a)
         {
             Utility uti = new Utility();
             DataTable dt = new DataTable();
-            string[] rowsGrid2 = new string[GridView2.Rows.Count];
+            ////string[] rowsGrid2 = new string[GridView2.Rows.Count];
 
-            for (int i = 0; i < GridView2.Rows.Count; i++)
-            {
-                rowsGrid2[i] += GridView2.Rows[i].Cells[1].Text;
-            }
-           
-            int RowIndex = int.Parse(e.CommandArgument.ToString());
-            string test = Convert.ToString(RowIndex);
+            ////for (int i = 0; i < GridView2.Rows.Count; i++)
+            ////{
+            ////    rowsGrid2[i] += GridView2.Rows[i].Cells[1].Text;
+            ////}
 
-            string name = rowsGrid2[RowIndex];
+            //int RowIndex = int.Parse(e.CommandArgument.ToString());
+            //string test = Convert.ToString(RowIndex);
 
-            uti.SelectDataProcedure("sp_AcceptFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
-          
-            ShowFriend();
+            int rowIndexs = int.Parse(a.CommandArgument.ToString());
+            int vals = (int)this.GridView2.DataKeys[rowIndexs]["Buddylist_ID"];
+
+             string buddylistID = Convert.ToString(vals);
+
             
+
+            dt.Merge(uti.AcceptFriend("sp_AcceptFriend", buddylistID));
+            string u_id = dt.Rows[0]["f_id"].ToString().Trim();
+            string f_id = dt.Rows[0]["u_id"].ToString().Trim();
+            int u_ID = Convert.ToInt32(u_id);
+            int f_ID = Convert.ToInt32(f_id); 
+            uti.SelectDataProcedure("sp_insertWhenAccept", u_id, f_id);
+            
+            ShowFriend();
+            ShowFriends();
+
+
+
         }
         public void ShowFriend ()
         {
             Utility uti = new Utility();
             DataTable dt = new DataTable();
-            dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
-            int rowTB = dt.Rows.Count;
-            string[] getBuddyID = new string[rowTB];
-            for (int i = 0; i < rowTB; i++)
-            {
-                getBuddyID[i] += dt.Rows[i]["Buddylist_ID"].ToString().Trim();
-                string getAr = getBuddyID[i];
-            }
+            //dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim()));
+            //int rowTB = dt.Rows.Count;
+            //string[] getBuddyID = new string[rowTB];
+            //for (int i = 0; i < rowTB; i++)
+            //{
+            //    getBuddyID[i] += dt.Rows[i]["Buddylist_ID"].ToString().Trim();
+            //    string getAr = getBuddyID[i];
+            //}
 
-            string[] GetName = new string[rowTB];
+            //string[] GetName = new string[rowTB];
 
-            for (int i = 0; i < rowTB; i++)
-            {
-                string getAr = getBuddyID[i];
-                dt = new DataTable();
-                dt.Merge(uti.ShowAddmeAndReceive("sp_GetBuddyIDToShow", getAr));
-                GetName[i] += dt.Rows[0]["name"].ToString().Trim();
+            //for (int i = 0; i < rowTB; i++)
+            //{
+            //    string getAr = getBuddyID[i];
+            //    dt = new DataTable();
+            //    dt.Merge(uti.ShowAddmeAndReceive("sp_GetBuddyIDToShow", getAr));
+            //    GetName[i] += dt.Rows[0]["name"].ToString().Trim();
 
-            }
+            //}
 
-            GridView2.DataSource = GetName;
+
+            dt.Merge(uti.ShowAddmeAndReceive("sp_ShowAddmeAndAccept2", Session["ID"].ToString().Trim()));
+            GridView2.DataSource = dt;
             GridView2.DataBind();
-            GridView2.Visible = true;
+            //GridView2.Visible = true;
             LabelCountAdd();
         }
         public void LabelCountAdd()
@@ -210,7 +228,7 @@ namespace Chat_Project
 
             #region ตรวจสอบว่าใครแอดเพื่อนมา
             Utility uti = new Utility();
-            uti.ShowNumberAddmeAndReceive("sp_ShowAddmeAndReceive", Session["ID"].ToString().Trim());
+            uti.ShowNumberAddmeAndReceive("sp_ShowAddmeAndAccept2", Session["ID"].ToString().Trim());
             if (uti.Rows > 0)
             {
                 Label1.Text = uti.Rows.ToString();
@@ -222,16 +240,19 @@ namespace Chat_Project
        
         protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            //uti.SelectDataProcedure("sp_ToFavoriteFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
+
             int rowIndex = int.Parse(e.CommandArgument.ToString());
-            //string FriendID = (string)this.GridView3.DataKeys[rowIndex].ToString();
-            Response.Redirect("frm_main.aspx");
-            
+            int val = (int)this.gv_showfriend.DataKeys[rowIndex]["Buddylist_ID"];
+
+
         }
 
         protected void gv_showfavorite_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
         }
+
     }
 
 }

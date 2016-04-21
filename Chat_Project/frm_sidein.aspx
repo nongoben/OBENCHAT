@@ -52,8 +52,12 @@
            </div>
         
       <div class="S_friend">
-          <asp:GridView ID="GridView2" runat="server" Width="211px" ShowHeader="False" OnRowCommand="GridView2_RowCommand">
+          <asp:GridView ID="GridView2" runat="server" Width="211px" ShowHeader="true" OnRowCommand="GridView2_RowCommand" AutoGenerateColumns="False" DataKeyNames="Fullname,Buddylist_ID">
               <Columns>
+                   <asp:BoundField DataField="Fullname" HeaderText="Fullname" ReadOnly="True"  
+                                SortExpression="Fullname" />
+                   <asp:BoundField DataField="Buddylist_ID" HeaderText="Buddylist_ID" ReadOnly="True"  
+                                SortExpression="Buddylist_ID" />
                   <asp:TemplateField>    
                     <ItemTemplate>  
                         <asp:Button ID="btn_AcceptFriend" runat="server" Text="ADD" OnClick="btn_AcceptFriend_Click" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
@@ -89,11 +93,16 @@
 
           <div class="chat-sidebar">
               <div class="sidebar-name" data-user-id="1">Test1</div> 
-            
-                      <asp:GridView ID="gv_showfriend" runat="server" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" >
+              <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+              <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                  <ContentTemplate>
+                      <asp:GridView ID="gv_showfriend" runat="server" DataKeyNames="Fullname,Buddylist_ID" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" AutoGenerateColumns="False" >
                   <HeaderStyle BorderStyle="None" />
-                          <Columns>
-
+                          <Columns> 
+                              <asp:BoundField DataField="Fullname" HeaderText="Fullname" ReadOnly="True" 
+                                SortExpression="Fullname" />
+                              <asp:BoundField DataField="Buddylist_ID" HeaderText="Buddylist_ID" ReadOnly="True" Visible="false"  
+                                SortExpression="Buddylist_ID"  />
                                <asp:TemplateField>    
                     <ItemTemplate>  
                         <asp:ImageButton ID="btnFavorite" runat="server" ImageUrl="~/Images/star-512.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
@@ -102,7 +111,8 @@
 
                           </Columns>
               </asp:GridView>
-          
+                      </ContentTemplate>
+          </asp:UpdatePanel>
               <br />
               <asp:GridView ID="gv_showfavorite" runat="server" OnRowCommand="gv_showfavorite_RowCommand" BorderStyle="None" GridLines="None" ShowHeader="False">
                   <Columns>
