@@ -99,32 +99,35 @@
                       <asp:GridView ID="gv_showfriend" runat="server" DataKeyNames="Fullname,Buddylist_ID" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" AutoGenerateColumns="False" >
                   <HeaderStyle BorderStyle="None" />
                           <Columns> 
+                      <asp:TemplateField>    
+                    <ItemTemplate>  
+                        <asp:ImageButton ID="btnFavorite" runat="server" ImageUrl="~/Images/star-512.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>'  />
+                    </ItemTemplate>
+                    </asp:TemplateField>
                               <asp:BoundField DataField="Fullname" HeaderText="Fullname" ReadOnly="True" 
                                 SortExpression="Fullname" />
                               <asp:BoundField DataField="Buddylist_ID" HeaderText="Buddylist_ID" ReadOnly="True" Visible="false"  
                                 SortExpression="Buddylist_ID"  />
-                               <asp:TemplateField>    
-                    <ItemTemplate>  
-                        <asp:ImageButton ID="btnFavorite" runat="server" ImageUrl="~/Images/star-512.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
-                    </ItemTemplate>
-                    </asp:TemplateField>
-
                           </Columns>
               </asp:GridView>
-                      </ContentTemplate>
-          </asp:UpdatePanel>
+   
               <br />
-              <asp:GridView ID="gv_showfavorite" runat="server" OnRowCommand="gv_showfavorite_RowCommand" BorderStyle="None" GridLines="None" ShowHeader="False">
-                  <Columns>
-                               <asp:TemplateField>    
+            <asp:GridView ID="gv_showfavorite" runat="server" DataKeyNames="Fullname,Buddylist_ID" BorderStyle="None" GridLines="None" ShowHeader="False" OnRowCommand="GridView3_RowCommand" AutoGenerateColumns="False" >
+                  <HeaderStyle BorderStyle="None" />
+                          <Columns> 
+                      <asp:TemplateField>    
                     <ItemTemplate>  
                         <asp:ImageButton ID="btnUnFavorite" runat="server" ImageUrl="~/Images/Button-Favorite-icon.png"  Width="30px" Height="30px" CommandArgument = '<%# DataBinder.Eval(Container , "RowIndex") %>' />
                     </ItemTemplate>
                     </asp:TemplateField>
-
+                              <asp:BoundField DataField="Fullname" HeaderText="Fullname" ReadOnly="True" 
+                                SortExpression="Fullname" />
+                              <asp:BoundField DataField="Buddylist_ID" HeaderText="Buddylist_ID" ReadOnly="True" Visible="false"  
+                                SortExpression="Buddylist_ID"  />
                           </Columns>
               </asp:GridView>
-          
+                             </ContentTemplate>
+   </asp:UpdatePanel>
             </div>
 
 

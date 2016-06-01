@@ -216,6 +216,15 @@ namespace Chat_Project
 
         }
 
+
+        public void ToFavorite (string stp , string @value1)
+        {
+            SqlCommand cmd = new SqlCommand(stp , this.connectToDB());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@value1", @value1.ToString().Trim());
+            cmd.ExecuteNonQuery();
+        }
+
     }
 }
 

@@ -63,8 +63,10 @@ namespace Chat_Project
             #endregion
 
             LabelCountAdd();
-            ShowFriends();
-
+            if (!IsPostBack)
+            {
+                ShowFriends();
+            }
 
         }
 
@@ -240,17 +242,23 @@ namespace Chat_Project
        
         protected void GridView3_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //uti.SelectDataProcedure("sp_ToFavoriteFriend", name.ToString().Trim(), Session["ID"].ToString().Trim());
 
+            Utility uti = new Utility();
             int rowIndex = int.Parse(e.CommandArgument.ToString());
             int val = (int)this.gv_showfriend.DataKeys[rowIndex]["Buddylist_ID"];
+            string BuddylistID = Convert.ToString(val);
 
+  
 
+             uti.ToFavorite("sp_ToFavoriteFriend", BuddylistID.ToString());
+            ShowFriends();
         }
 
         protected void gv_showfavorite_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            int val = (int)this.gv_showfriend.DataKeys[rowIndex]["Buddylist_ID"];
+           
         }
 
     }
